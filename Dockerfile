@@ -1,20 +1,16 @@
 FROM node:22.5-alpine
 
+# # Base image
+# FROM node:14-alpine
+# Set working directory
 WORKDIR /app
-
-
-COPY package*.json  ./
-
-# # RUN npm install
-# RUN npm install
-
-# RUN npm ci
-RUN npm ci
-
-
+# Copy package.json and package-lock.json
+COPY package*.json ./
+# Install dependencies
+RUN npm install
+# Copy the rest of the application
 COPY . .
-
-# EXPOSE 9000
-
-
-CMD [ "npm","start" ]
+# Start the Node.js application
+CMD ["npm", "start"]
+# Expose port 5000
+EXPOSE 5000
